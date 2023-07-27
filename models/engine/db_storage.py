@@ -51,6 +51,28 @@ class DBStorage:
                     new_dict[key] = obj
         return (new_dict)
 
+    def get(self, cls, id): Task-2 27-7-2023
+        """ Returns a single object
+            @cls: class of item we are looking for
+            @id: id of item
+        """
+        cls_objs = self.all(cls)
+        for k, v in cls_objs.items():
+            if v.id == id:
+                return v
+        return None
+    
+    def count(self, cls=None): # Task-2 27-7-2023
+        """ Count the number of items of a particular class
+            @cls: Name of class
+        """
+        cls_objs = self.all(cls)
+        total_objs = 0
+        for item in cls_objs:
+            total_objs += 1
+        return total_objs
+
+
     def new(self, obj):
         """add the object to the current database session"""
         self.__session.add(obj)
