@@ -51,7 +51,7 @@ class DBStorage:
                     new_dict[key] = obj
         return (new_dict)
 
-    def get(self, cls, id): Task-2 27-7-2023
+    def get(self, cls, id): # Task-2 27-7-2023
         """ Returns a single object
             @cls: class of item we are looking for
             @id: id of item

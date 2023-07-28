@@ -122,6 +122,10 @@ class HBNBCommand(cmd.Cmd):
         print(", ".join(obj_list), end="")
         print("]")
 
+
+
+
+
     def do_update(self, arg):
         """Update an instance based on the class name, id, attribute & value"""
         args = shlex.split(arg)
