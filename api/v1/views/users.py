@@ -19,7 +19,7 @@ def users_all():
     return jsonify(users_all)
 
 
-@app_views.route('/users/<user_id>', methods=['GET'] strict_slashes=False)
+@app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
 def user_get(user_id):
     """ handles GET method """
     user = storage.get("User", user_id)
@@ -29,7 +29,7 @@ def user_get(user_id):
     return jsonify(user)
 
 
-@app_views.route('/users/<user_id>', methods=['DELETE'] strict_slashes=False)
+@app_views.route('/users/<user_id>', methods=['DELETE'], strict_slashes=False)
 def user_delete(user_id):
     """ handles DELETE method """
     user = storage.get("User", user_id)
@@ -56,7 +56,7 @@ def user_post():
     return jsonify(user), 201
 
 
-@app_views.route('/users/<user_id>', methods=['PUT'] strict_slashes=False)
+@app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
 def user_put(user_id):
     """ handles PUT method """
     user = storage.get("User", user_id)
