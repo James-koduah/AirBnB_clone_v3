@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Amenities api"""
+"""Amenities api for our Airbnb"""
 
 from models import storage
 from models.amenity import Amenity
