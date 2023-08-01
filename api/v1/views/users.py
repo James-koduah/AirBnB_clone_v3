@@ -14,7 +14,7 @@ def users_all():
     """ returns list of all User objects """
     users_all = []
     users = storage.all("User")
-    for k, user in users:
+    for k, user in users.items():
         users_all.append(user.to_dict())
     return jsonify(users_all)
 
@@ -68,7 +68,7 @@ def user_put(user_id):
     for key, value in data.items():
         ignore_keys = ["id", "email", "created_at", "updated_at"]
         if key not in ignore_keys:
-            user.bm_update(key, value)
+            setattr(user, key, value)
     user.save()
     user = user.to_dict()
     return jsonify(user), 200
