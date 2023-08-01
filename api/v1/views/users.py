@@ -13,13 +13,13 @@ from api.v1.views import app_views
 def users_all():
     """ returns list of all User objects """
     users_all = []
-    users = storage.all("User").values()
-    for user in users:
-        users_all.append(user.to_json())
+    users = storage.all("User")
+    for k, user in users:
+        users_all.append(user.to_dict())
     return jsonify(users_all)
 
 
-@app_views.route('/users/<user_id>', methods=['GET'])
+@app_views.route('/users/<user_id>', methods=['GET'] strict_slashes=False)
 def user_get(user_id):
     """ handles GET method """
     user = storage.get("User", user_id)
@@ -29,16 +29,15 @@ def user_get(user_id):
     return jsonify(user)
 
 
-@app_views.route('/users/<user_id>', methods=['DELETE'])
+@app_views.route('/users/<user_id>', methods=['DELETE'] strict_slashes=False)
 def user_delete(user_id):
     """ handles DELETE method """
-    empty_dict = {}
     user = storage.get("User", user_id)
     if user is None:
         abort(404)
     storage.delete(user)
     storage.save()
-    return jsonify(empty_dict), 200
+    return jsonify({}), 200
 
 
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
@@ -57,7 +56,7 @@ def user_post():
     return jsonify(user), 201
 
 
-@app_views.route('/users/<user_id>', methods=['PUT'])
+@app_views.route('/users/<user_id>', methods=['PUT'] strict_slashes=False)
 def user_put(user_id):
     """ handles PUT method """
     user = storage.get("User", user_id)
