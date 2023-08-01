@@ -13,7 +13,7 @@ def amenities_all():
     amenities_all = []
     amenities = storage.all("Amenity").values()
     for amenity in amenities:
-        amenities_all.append(amenity.to_json())
+        amenities_all.append(amenity.to_dict())
     return jsonify(amenities_all)
 
 
@@ -23,7 +23,7 @@ def amenity_get(amenity_id):
     amenity = storage.get("Amenity", amenity_id)
     if amenity is None:
         abort(404)
-    amenity = amenity.to_json()
+    amenity = amenity.to_dict()
     return jsonify(amenity)
 
 
@@ -49,7 +49,7 @@ def amenity_post():
         abort(400, "Missing name")
     amenity = Amenity(**data)
     amenity.save()
-    amenity = amenity.to_json()
+    amenity = amenity.to_dict()
     return jsonify(amenity), 201
 
 
@@ -67,5 +67,5 @@ def amenity_put(amenity_id):
         if key not in ignore_keys:
             amenity.bm_update(key, value)
     amenity.save()
-    amenity = amenity.to_json()
+    amenity = amenity.to_dict()
     return jsonify(amenity), 200
